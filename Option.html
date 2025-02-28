@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>谁是世界上最厉害的人</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background-color: #FFE4B5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+     .question {
+            font-size: 2em;
+            color: #FF6347;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+     .option {
+            background-color: #FFD700;
+            color: #000;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.5em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+     .message {
+            font-size: 1.2em;
+            color: #FF1493;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="question">嘿呀，快来告诉偶，你觉得世界上最厉害的人是谁捏🧐？</div>
+    <a href="#" class="option" onclick="checkAnswer('一阵风')">一阵风</a>
+    <a href="#" class="option" onclick="checkAnswer('我')">我</a>
+    <div class="message" id="message"></div>
+
+    <script>
+        function checkAnswer(answer) {
+            const messageDiv = document.getElementById('message');
+            if (answer === '我') {
+                messageDiv.textContent = '哎呀呀，再好好想想哟，正确答案是“一阵风”啦😜！选“一阵风”才对哟~';
+            } else {
+                messageDiv.textContent = '答对啦🎉！“一阵风”就是世界上最厉害的人~';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
