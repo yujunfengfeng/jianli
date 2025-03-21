@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="UTF - 8">
-    <title>古诗展示</title>
+    <title>古诗三点水文字变色</title>
     <style>
-       .blue - title {
+      .blue - text {
             color: blue;
         }
     </style>
@@ -13,12 +13,12 @@
 
 <body>
     <h1>古诗展示</h1>
-    <h2 class="blue - title">锦瑟</h2>
+    <h2>锦瑟</h2>
     <p>锦瑟无端五十弦，一弦一柱思华年。</p>
     <p>庄生晓梦迷蝴蝶，望帝春心托杜鹃。</p>
     <p>沧海月明珠有泪，蓝田日暖玉生烟。</p>
     <p>此情可待成追忆？只是当时已惘然。</p>
-    <h2 class="blue - title">春江花月夜</h2>
+    <h2>春江花月夜</h2>
     <p>春江潮水连海平，海上明月共潮生。</p>
     <p>滟滟随波千万里，何处春江无月明！</p>
     <p>江流宛转绕芳甸，月照花林皆似霰。</p>
@@ -37,6 +37,28 @@
     <p>江水流春去欲尽，江潭落月复西斜。</p>
     <p>斜月沉沉藏海雾，碣石潇湘无限路。</p>
     <p>不知乘月几人归，落月摇情满江树。</p>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var paragraphs = document.getElementsByTagName('p');
+            var sanDianShui = ['江', '海', '流', '潮', '波', '汀', '渊', '溏', '潭'];
+            for (var i = 0; i < paragraphs.length; i++) {
+                var text = paragraphs[i].innerText;
+                var newText = '';
+                for (var j = 0; j < text.length; j++) {
+                    var char = text[j];
+                    var hasSanDianShui = sanDianShui.some(function (word) {
+                        return char === word;
+                    });
+                    if (hasSanDianShui) {
+                        newText += '<span class="blue - text">' + char + '</span>';
+                    } else {
+                        newText += char;
+                    }
+                }
+                paragraphs[i].innerHTML = newText;
+            }
+        });
+    </script>
 </body>
 
 </html>
