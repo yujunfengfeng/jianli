@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单计算器</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        table {
+            border-collapse: collapse;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 20px;
+            font-size: 32px;
+            text-align: right;
+            border: none;
+            background-color: #e0e0e0;
+            outline: none;
+        }
+
+        button {
+            width: 80px;
+            height: 80px;
+            font-size: 24px;
+            border: none;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .operator {
+            background-color: #f9a825;
+            color: white;
+        }
+
+        .operator:hover {
+            background-color: #fbc02d;
+        }
+
+        #clear {
+            width: 100%;
+            background-color: #ef5350;
+            color: white;
+        }
+
+        #clear:hover {
+            background-color: #e57373;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td colspan="4">
+                <input type="text" id="result" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td><button onclick="appendToResult('7')">7</button></td>
+            <td><button onclick="appendToResult('8')">8</button></td>
+            <td><button onclick="appendToResult('9')">9</button></td>
+            <td><button class="operator" onclick="appendToResult('/')">/</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="appendToResult('4')">4</button></td>
+            <td><button onclick="appendToResult('5')">5</button></td>
+            <td><button onclick="appendToResult('6')">6</button></td>
+            <td><button class="operator" onclick="appendToResult('*')">*</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="appendToResult('1')">1</button></td>
+            <td><button onclick="appendToResult('2')">2</button></td>
+            <td><button onclick="appendToResult('3')">3</button></td>
+            <td><button class="operator" onclick="appendToResult('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="appendToResult('0')">0</button></td>
+            <td><button onclick="appendToResult('.')">.</button></td>
+            <td><button onclick="calculate()">=</button></td>
+            <td><button class="operator" onclick="appendToResult('+')">+</button></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <button id="clear" onclick="clearResult()">清除</button>
+            </td>
+        </tr>
+    </table>
+    <script>
+        function appendToResult(value) {
+            document.getElementById('result').value += value;
+        }
+
+        function clearResult() {
+            document.getElementById('result').value = '';
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('result').value = eval(document.getElementById('result').value);
+            } catch (error) {
+                document.getElementById('result').value = '错误';
+            }
+        }
+    </script>
+</body>
+
+</html>    
