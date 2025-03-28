@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐播放器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .player-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .play-button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+        .play-button:active {
+            transform: scale(0.95);
+        }
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="player-container">
+    <button class="play-button" id="playButton">▶️</button>
+    <audio id="audioPlayer" src="your-audio-file.mp3"></audio>
+</div>
+
+<script>
+    const playButton = document.getElementById('playButton');
+    const audioPlayer = document.getElementById('audioPlayer');
+
+    playButton.addEventListener('click', () => {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            playButton.innerHTML = '⏸️'; // Change to pause button
+        } else {
+            audioPlayer.pause();
+            playButton.innerHTML = '▶️'; // Change to play button
+        }
+    });
+</script>
+
+</body>
+</html>
