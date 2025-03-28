@@ -1,101 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>点击计数与触摸坐标显示</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐播放器与Mermaid流程图</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column;
-            margin: 0;
-            background-color: #f4f4f9;
-            height: 100vh;
-        }
-
-        header {
-            background-color: #007BFF;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 24px;
-        }
-
-        main {
-            display: flex;
-            flex-direction: column;
+            justify-content: space-around;
             align-items: center;
-            justify-content: center;
-            flex-grow: 1;
-            padding: 20px;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
         }
 
-        p {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 18px;
+        .player-container {
             text-align: center;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            width: 40%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px;
+            border-radius: 10px;
+            border: none;
         }
 
         button {
-            padding: 20px 40px;
-            font-size: 24px;
-            border: none;
-            background-color: #007BFF;
+            background-color: #ff4081;
             color: white;
-            border-radius: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 18px;
+            margin-top: 15px;
             transition: background-color 0.3s ease;
-            -webkit-tap-highlight-color: transparent;
         }
 
-        button:active {
-            background-color: #0056b3;
+        button:hover {
+            background-color: #e0356b;
         }
 
-        #count {
-            font-size: 48px;
-            margin-top: 30px;
-            color: #333;
-        }
-
-        #touch-coordinates {
-            font-size: 20px;
-            margin-top: 30px;
-            color: #666;
+        .mermaid {
+            margin-top: 20px;
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-
 <body>
-    <header>
-        点击计数与触摸坐标显示
-    </header>
-    <main>
-        <p>轻触下面的按钮，每点击一次数字就会加一。</p>
-        <button id="clickButton">点击我</button>
-        <div id="count">0</div>
-        <div id="touch-coordinates">触摸屏幕显示坐标</div>
-    </main>
-    <script>
-        const clickButton = document.getElementById('clickButton');
-        const countElement = document.getElementById('count');
-        let clickCount = 0;
 
-        clickButton.addEventListener('touchstart', function () {
-            clickCount++;
-            countElement.textContent = clickCount;
-        });
-
-        document.addEventListener('touchstart', function (event) {
-            const touch = event.touches[0];
-            const touchCoordinates = document.getElementById('touch-coordinates');
-            touchCoordinates.textContent = `触摸点坐标: (${touch.clientX}, ${touch.clientY})`;
-        });
-    </script>
-</body>
-
-</html>
-    
+<!-- YouTube 视频播放器容器 -->
+<div class="player-container">
+    <h2 style="color: white;">林俊杰 - 心墙</h2>
+    <!-- 嵌入 YouTube 视频播放器 -->
+    <iframe id="youtubePlayer" src="https://www.youtube.com/embed/9dFtR-IEb7c?aut
