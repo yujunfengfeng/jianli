@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单计算器</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        table {
+            border-collapse: collapse;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 40px);
+            padding: 20px;
+            font-size: 32px;
+            text-align: right;
+            border: none;
+            background-color: #e0e0e0;
+            outline: none;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        button {
+            width: 80px;
+            height: 80px;
+            font-size: 24px;
+            border: none;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .operator {
+            background-color: #f9a825;
+            color: white;
+        }
+
+        .operator:hover {
+            background-color: #fbc02d;
+        }
+
+        #clear {
+            width: 100%;
+            background-color: #ef5350;
+            color: white;
+        }
+
+        #clear:hover {
+            background-color: #e57373;
+        }
+
+        /* 烟花特效样式 */
+       .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: firework 1s ease-out;
+        }
+
+        @keyframes firework {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(10);
+                opacity: 0;
+            }
+        }
+
+        /* 爱心特效样式 */
+       .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            transform: rotate(-45deg);
+            pointer-events: none;
+            animation: heart 2s ease-out;
+        }
+
+       .heart::before,
+       .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            border-radius: 50%;
+        }
+
+       .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+       .heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes heart {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+
+        /* logo 样式 */
+       .logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 添加 logo -->
+    <img class="logo" src="https://b0.bdstatic.com/732bfd681e3d828780c02b07f9b54223.jpg@h_1280" alt="蓝色小鱼 logo">
+    <table>
+        <tr>
+            <td colspan="4">
+                <input type="text" id="result" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td><button onclick="appendToResult('7'); createFirework(event)">7</button></td>
+            <td><button onclick="appendToResult('8'); createFirework(event)">8</button></td>
+            <td><button onclick="appendToResult('9'); createFirework(event)">9</button></td>
+            <td><button class="operator" onclick="appendToResult('/'); createHeart(event)">/</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="appendToResult('4'); createFirework(event)">4</button></td>
+            <td><button onclick="appendToResult('5'); createFirework(event)">5</button></td>
+            <td><button onclick="appendToResult('6'); createFirework(event)">6</button></td>
+            <td><button class="operator" onclick="appendToResult('*'); createHeart(event)">*</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="appendToResult('1'); createFirework(event)">1</button></td>
+            <td><button onclick="appendToResult('2'); createFirework(event)">2</button></td>
+            <td><button onclick="appendToResult('3'); createFirework(event)">3</button></td>
+            <td><button class="operator" onclick="appendToResult('-'); createHeart(event)">-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="appendToResult('0'); createFirework(event)">0</button></td>
+            <td><button onclick="appendToResult('.'); createFirework(event)">.</button></td>
+            <td><button onclick="calculate(); createFirework(event)">=</button></td>
+            <td><button class="operator" onclick="appendToResult('+'); createHeart(event)">+</button></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <button id="clear" onclick="clearResult()">清除</button>
+            </td>
+        </tr>
+    </table>
+    <script>
+        function appendToResult(value) {
+            document.getElementById('result').value += value;
+        }
+
+        function clearResult() {
+            document.getElementById('result').value = '';
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('result').value = eval(document.getElementById('result').value);
+            } catch (error) {
+                document.getElementById('result').value = '错误';
+            }
+        }
+
+        function createFirework(event) {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            firework.style.left = event.clientX + 'px';
+            firework.style.top = event.clientY + 'px';
+            document.body.appendChild(firework);
+            setTimeout(() => {
+                firework.remove();
+            }, 1000);
+        }
+
+        function createHeart(event) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = event.clientX + 'px';
+            heart.style.top = event.clientY + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>    
